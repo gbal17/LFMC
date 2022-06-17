@@ -1,4 +1,4 @@
-This readme describes the software routines for LFMC map over Portugal.
+This readme describes the software routines for LFMC maps over Portugal.
 
 This system has been tested, ported, and run successfully on macOS Catalina version 10.15.7 OS
 
@@ -8,18 +8,18 @@ This system has been tested, ported, and run successfully on macOS Catalina vers
 
 1) Start with a fresh install miniconda3
 
-2) create new environment and install the following library:
+2) create a new environment and install the following library:
 conda install -c conda-forge mamba
 mamba install -c conda-forge gdal
 mamba install -c conda-forge fiona shapely rasterio pyproj pandas jupyterlab
 mamba install -c conda-forge rioxarray
 mamba install -c conda-forge leafmap xarray netcdf4 localtileserver
-Update the library if nevessary
+Update the library if necessary
 
 3) If there are no error messages, the software libraries and dependencies are correctly configured.
 
 4) The crontab commands in the crontab.txt file list the scripts and the schedule when 
-they are automatically running according conrab sintax in the vi editor.
+they are automatically running according to conrab syntax in the vi editor.
 
 ##############################
 ##### Usage Instructions #####
@@ -29,7 +29,7 @@ they are automatically running according conrab sintax in the vi editor.
 ******** Folder : NRT_Flood **********
 **************************************
 
-Description: This set of programs downloads, processes, and applies classification algorithm 
+Description: This set of programs downloads, processes, and applies a classification algorithm 
 to MODIS and ERA5 data to determine LFMC maps over scrublands and woodlands of Portugal.
 
 Programs in this module and descriptions:
@@ -43,4 +43,5 @@ The programs should be run in numerical order:
 
 (1) --> (2) --> (3) --> (4)
 
+the script az_main.py runs all the scripts together at once in the correct order.
 Each program contains a more detailed description within the docstring of the .py file as well as in-line comments for code clarity
