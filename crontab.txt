@@ -1,0 +1,4 @@
+32 9 * * * cd /Users/gb/Documents/ISA/LFMC/scripts && /Users/gb/opt/miniconda3/envs/gee/bin/python a1_e_swvl.py
+33 9 * * * cd /Users/gb/Documents/ISA/LFMC/scripts && /Users/gb/opt/miniconda3/envs/gee/bin/python a1_ndvi.py
+37 9 * * * cd /Users/gb/Documents/ISA/LFMC/scripts && /Users/gb/opt/miniconda3/envs/gee/bin/python a2_1_upsampling.py
+38 9 * * * cd /Users/gb/Documents/ISA/LFMC/scripts && /Users/gb/opt/miniconda3/envs/gee/bin/python a2_2_coreg.py
