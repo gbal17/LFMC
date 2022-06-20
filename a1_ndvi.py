@@ -18,6 +18,8 @@ import ee
 import os
 import geemap
 
+from dirs import dir_data
+
 # Initialize the Earth Engine module.
 ee.Initialize()
 
@@ -58,6 +60,5 @@ dataset = product.filter(ee.Filter.date(date)).filter(ee.Filter.bounds(roi)).mos
 
 # ------------------------------------
 # 4) Export DATASET in the folder '~/Documents/ISA/LFMC/data'
-out_dir = os.path.join(os.path.expanduser('~'), 'Documents/ISA/LFMC_maps/data')
-filename = os.path.join(out_dir, ProductName+'_'+today+'.tif')
+filename = os.path.join(dir_data, ProductName+'_'+today+'.tif')
 geemap.ee_export_image(dataset, filename=filename, scale=500, region=roi, file_per_band=False)

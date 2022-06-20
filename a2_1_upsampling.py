@@ -15,12 +15,12 @@ and save temporarily in the directory '~/Documents/ISA/LFMC_maps/data'
 
 from osgeo import gdal
 import os
+from dirs import dir_data
 
 ########
 # MAIN # ------------------------------------
 ########
 
-main_folder='/Users/gb/Documents/ISA/LFMC_maps/';
 dataset = 'ECMWF'
 
 # ------------------------------------
@@ -35,7 +35,7 @@ day = now.strftime("%d")
 today = year+month+day
 
 # 2) open reference file and get resolution
-referenceFile = os.path.join(main_folder+'data/', 'MCD43A4_006_NDVI_20220525.tif')
+referenceFile = os.path.join(dir_data, 'MCD43A4_006_NDVI_20220525.tif')
 reference = gdal.Open(referenceFile, 0)  # this opens the file in only reading mode
 referenceTrans = reference.GetGeoTransform()
 print(referenceTrans)
@@ -51,8 +51,8 @@ print(referenceTrans[5])
 variable = 'e'
 file_name = dataset+'_'+variable+'_'+today+'_mean.tif'
 file_name1 = dataset+'_'+variable+'_'+today+'_mean_wrap.tif'
-inputFile = os.path.join(main_folder+'data/'+year+'/'+month, file_name)
-outputFile = os.path.join(main_folder+'data/', file_name1)
+inputFile = os.path.join(dir_data+year+'/'+month, file_name)
+outputFile = os.path.join(dir_data, file_name1)
 # call gdal Warp
 kwargs = {"format": "GTiff", "xRes": x_res, "yRes": y_res}
 ds = gdal.Warp(outputFile, inputFile, **kwargs)
@@ -61,8 +61,8 @@ ds = gdal.Warp(outputFile, inputFile, **kwargs)
 variable = 'swvl'
 file_name = dataset+'_'+variable+'_'+today+'_mean.tif'
 file_name1 = dataset+'_'+variable+'_'+today+'_mean_wrap.tif'
-inputFile = os.path.join(main_folder+'data/'+year+'/'+month, file_name)
-outputFile = os.path.join(main_folder+'data/', file_name1)
+inputFile = os.path.join(dir_data+year+'/'+month, file_name)
+outputFile = os.path.join(dir_data, file_name1)
 # call gdal Warp
 kwargs = {"format": "GTiff", "xRes": x_res, "yRes": y_res}
 ds = gdal.Warp(outputFile, inputFile, **kwargs)

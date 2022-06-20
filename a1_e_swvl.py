@@ -29,6 +29,7 @@ import leafmap
 import glob
 import shutil
 
+from dirs import dir_data, dir_codes
 #############
 # Functions # ------------------------------------
 #############
@@ -61,9 +62,6 @@ def ftp_get_file(ftp_session, file_name):
 # MAIN # ------------------------------------
 ########
 
-# Set the WORKING FOLDER
-main_folder='/Users/gb/Documents/ISA/LFMC_maps/';
-
 # ------------------------------------
 # 1) determines the day of the year 
 
@@ -77,7 +75,7 @@ today = year+month+day
 
 # 1.1) Create the directory "year" inside "data"
 # Check whether the specified path exists or not
-path = main_folder+'data/'+year
+path = dir_data+year
 isExist = os.path.exists(path)
 if not isExist:
 # Create a new directory because it does not exist 
@@ -85,7 +83,7 @@ if not isExist:
 
 # 1.2) Create the directory "month" inside the directory "year"
 # Check whether the specified path exists or not
-path = main_folder+'data/'+year+'/'+month
+path = dir_data+year+'/'+month
 isExist = os.path.exists(path)
 if not isExist:
 # Create a new directory because it does not exist 
@@ -162,7 +160,7 @@ ftp_session.quit()
 
 # 4.1) EVAPORATION
 variable = 'e'
-ds = xr.open_mfdataset(main_folder+dataset+'_'+variable+'*.nc')
+ds = xr.open_mfdataset(dir_codes+dataset+'_'+variable+'*.nc')
 ds_mean = ds.mean(dim = "time")
 file_name = dataset+'_'+variable+'_'+today+'_mean.nc'
 ds_mean.to_netcdf(file_name)
@@ -178,13 +176,13 @@ band.rio.to_raster(file_name)
 
 # 4.2) Soil Moisture (SWVL)
 variable = 'swvl1'
-ds1 = xr.open_mfdataset(main_folder+dataset+'_'+variable+'*.nc')
+ds1 = xr.open_mfdataset(dir_codes+dataset+'_'+variable+'*.nc')
 variable = 'swvl2'
-ds2 = xr.open_mfdataset(main_folder+dataset+'_'+variable+'*.nc')
+ds2 = xr.open_mfdataset(dir_codes+dataset+'_'+variable+'*.nc')
 variable = 'swvl3'
-ds3 = xr.open_mfdataset(main_folder+dataset+'_'+variable+'*.nc')
+ds3 = xr.open_mfdataset(dir_codes+dataset+'_'+variable+'*.nc')
 variable = 'swvl4'
-ds4 = xr.open_mfdataset(main_folder+dataset+'_'+variable+'*.nc')
+ds4 = xr.open_mfdataset(dir_codes+dataset+'_'+variable+'*.nc')
 
 variable = 'swvl'
 ds_mean = ((ds1['swvl1'].mean('time')*7) + (ds2['swvl2'].mean('time')*21) + \
@@ -217,8 +215,8 @@ for filePath in fileList:
 
 # ------------------------------------
 # 6) Move the TIFF files from Main Folder to DATA folder
-src_folder = main_folder
-dst_folder = main_folder+'data/'+year+'/'+month+'/'
+src_folder = dir_codes
+dst_folder = dir_data+year+'/'+month+'/'
 
 # Search files with tiff extension in source directory
 pattern = "/*.tif"

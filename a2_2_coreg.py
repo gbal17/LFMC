@@ -1,7 +1,7 @@
 ''' 
 This program does the following:
 1) determines the day of the year
-2) Does the Co-Registration according to reference MODIS file in '~/Documents/ISA/LFMC_maps/data': MCD43A4_006_NDVI_20220525.tif
+2) Does the Co-Registration according to reference MODIS  file in '~/Documents/ISA/LFMC_maps/data': MCD43A4_006_NDVI_20220525.tif
    for the following files generated in the previous script in '~/Documents/ISA/LFMC_maps/data':
    2.1) 'e'    Evaporation:    ECMWF_e_yyyymmdd_mean_wrap       to became ---> ECMWF_e_yyyymmdd_mean_coreg
    2.2) 'swvl' Soil Moisture:  ECMWF_swvl_yyyymmdd_mean_wrap    to became ---> ECMWF_swvl_yyyymmdd_mean_coreg
@@ -17,6 +17,8 @@ import os
 from rasterio.warp import reproject, Resampling, calculate_default_transform
 import rasterio
 import glob
+
+from dirs import dir_data
 
 #############
 # Functions # ------------------------------------
@@ -72,10 +74,9 @@ def reproj_match(infile, match, outfile):
 # MAIN # ------------------------------------
 ########
 
-main_folder='/Users/gb/Documents/ISA/LFMC_maps/';
 dataset = 'ECMWF'
 # REFERENCE FILE
-referenceFile = os.path.join(main_folder+'data/',\
+referenceFile = os.path.join(dir_data,\
                 'MCD43A4_006_NDVI_20220525.tif')
 
 # ------------------------------------
@@ -96,8 +97,8 @@ today = year+month+day
 variable = 'e'
 file_name = dataset+'_'+variable+'_'+today+'_mean_wrap.tif'
 file_name1 = dataset+'_'+variable+'_'+today+'_mean_coreg.tif'
-inputFile = os.path.join(main_folder+'data/', file_name)
-outputFile = os.path.join(main_folder+'data/', file_name1)
+inputFile = os.path.join(dir_data, file_name)
+outputFile = os.path.join(dir_data, file_name1)
 # co-register LS to match precip raster
 reproj_match(infile = inputFile, 
              match= referenceFile,
@@ -107,8 +108,8 @@ reproj_match(infile = inputFile,
 variable = 'swvl'
 file_name = dataset+'_'+variable+'_'+today+'_mean_wrap.tif'
 file_name1 = dataset+'_'+variable+'_'+today+'_mean_coreg.tif'
-inputFile = os.path.join(main_folder+'data/', file_name)
-outputFile = os.path.join(main_folder+'data/', file_name1)
+inputFile = os.path.join(dir_data, file_name)
+outputFile = os.path.join(dir_data, file_name1)
 # co-register LS to match precip raster
 reproj_match(infile = inputFile, 
              match= referenceFile,
@@ -117,7 +118,7 @@ reproj_match(infile = inputFile,
 # ------------------------------------
 # 3) Remove the files upsampled (wrap) from previous process (upsampling)
 # get a recursive list of nc files
-fileList = glob.glob(os.path.join(main_folder+'data/', '*_wrap.tif'), recursive=True) 
+fileList = glob.glob(os.path.join(dir_data, '*_wrap.tif'), recursive=True) 
 
 # iterate over the list of filepaths & remove each file. 
 for filePath in fileList:
