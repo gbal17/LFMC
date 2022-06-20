@@ -1,12 +1,12 @@
 ''' 
 This program does the following:
 1) determines the day of the year
-2) open reference MODIS file in '~/Documents/ISA/LFMC/data': MCD43A4_006_NDVI_20220525.tif
+2) open reference MODIS file in '~/Documents/ISA/LFMC_maps/data': MCD43A4_006_NDVI_20220525.tif
    and get resolution
-3) Upsample according to reference file the following files in '~/Documents/ISA/LFMC/data/YYYY/mm': 
+3) Upsample according to reference file the following files in '~/Documents/ISA/LFMC_maps/data/YYYY/mm': 
    3.1) 'e'    Evaporation:    ECMWF_e_yyyymmdd_mean     to became ---> ECMWF_e_yyyymmdd_mean_wrap
    3.2) 'swvl' Soil Moisture:  ECMWF_swvl_yyyymmdd_mean  to became ---> ECMWF_swvl_yyyymmdd_mean_wrap
-and save temporarily in the directory '~/Documents/ISA/LFMC/data'
+and save temporarily in the directory '~/Documents/ISA/LFMC_maps/data'
 '''
 
 #############
@@ -20,7 +20,7 @@ import os
 # MAIN # ------------------------------------
 ########
 
-main_folder='/Users/gb/Documents/ISA/LFMC/';
+main_folder='/Users/gb/Documents/ISA/LFMC_maps/';
 dataset = 'ECMWF'
 
 # ------------------------------------

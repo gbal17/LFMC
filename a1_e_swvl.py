@@ -12,8 +12,8 @@ Dowloads the NetCDF files from 00:00 to 24:00 and close the ftp
    convert this to TIFF
 5) Remove the NetCDF files
 6) Move the TIFF files from 
-   '~/Documents/ISA/LFMC/scripts' to 
-   '~/Documents/ISA/LFMC/data' in the correct Year(e.g: 2022) and Month(e.g: 06) folder.
+   '~/Documents/ISA/LFMC_maps' to 
+   '~/Documents/ISA/LFMC_maps/data' in the correct Year(e.g: 2022) and Month(e.g: 06) folder.
 '''
 
 #############
@@ -62,7 +62,7 @@ def ftp_get_file(ftp_session, file_name):
 ########
 
 # Set the WORKING FOLDER
-main_folder='/Users/gb/Documents/ISA/LFMC/';
+main_folder='/Users/gb/Documents/ISA/LFMC_maps/';
 
 # ------------------------------------
 # 1) determines the day of the year 
@@ -162,7 +162,7 @@ ftp_session.quit()
 
 # 4.1) EVAPORATION
 variable = 'e'
-ds = xr.open_mfdataset(main_folder+'scripts/'+dataset+'_'+variable+'*.nc')
+ds = xr.open_mfdataset(main_folder+dataset+'_'+variable+'*.nc')
 ds_mean = ds.mean(dim = "time")
 file_name = dataset+'_'+variable+'_'+today+'_mean.nc'
 ds_mean.to_netcdf(file_name)
@@ -178,13 +178,13 @@ band.rio.to_raster(file_name)
 
 # 4.2) Soil Moisture (SWVL)
 variable = 'swvl1'
-ds1 = xr.open_mfdataset(main_folder+'scripts/'+dataset+'_'+variable+'*.nc')
+ds1 = xr.open_mfdataset(main_folder+dataset+'_'+variable+'*.nc')
 variable = 'swvl2'
-ds2 = xr.open_mfdataset(main_folder+'scripts/'+dataset+'_'+variable+'*.nc')
+ds2 = xr.open_mfdataset(main_folder+dataset+'_'+variable+'*.nc')
 variable = 'swvl3'
-ds3 = xr.open_mfdataset(main_folder+'scripts/'+dataset+'_'+variable+'*.nc')
+ds3 = xr.open_mfdataset(main_folder+dataset+'_'+variable+'*.nc')
 variable = 'swvl4'
-ds4 = xr.open_mfdataset(main_folder+'scripts/'+dataset+'_'+variable+'*.nc')
+ds4 = xr.open_mfdataset(main_folder+dataset+'_'+variable+'*.nc')
 
 variable = 'swvl'
 ds_mean = ((ds1['swvl1'].mean('time')*7) + (ds2['swvl2'].mean('time')*21) + \
@@ -216,8 +216,8 @@ for filePath in fileList:
         print("Error while deleting file")
 
 # ------------------------------------
-# 6) Move the TIFF files from SCRIPTS to DATA folder
-src_folder = main_folder+'scripts/'
+# 6) Move the TIFF files from Main Folder to DATA folder
+src_folder = main_folder
 dst_folder = main_folder+'data/'+year+'/'+month+'/'
 
 # Search files with tiff extension in source directory

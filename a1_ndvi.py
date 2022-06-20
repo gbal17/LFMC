@@ -7,7 +7,7 @@ This program does the following:
    - Region of Interest (roi): Portugal shape file in Earth Engine asset ("users/baldassarre/1_PyroPas/Portugal")
    - The last available date 
    Mosaics over roi
-4) Export the derived image in the folder '~/Documents/ISA/LFMC/data'
+4) Export the derived image in the folder '~/Documents/ISA/LFMC_maps/data'
 '''
 
 #############
@@ -58,6 +58,6 @@ dataset = product.filter(ee.Filter.date(date)).filter(ee.Filter.bounds(roi)).mos
 
 # ------------------------------------
 # 4) Export DATASET in the folder '~/Documents/ISA/LFMC/data'
-out_dir = os.path.join(os.path.expanduser('~'), 'Documents/ISA/LFMC/data')
+out_dir = os.path.join(os.path.expanduser('~'), 'Documents/ISA/LFMC_maps/data')
 filename = os.path.join(out_dir, ProductName+'_'+today+'.tif')
 geemap.ee_export_image(dataset, filename=filename, scale=500, region=roi, file_per_band=False)
