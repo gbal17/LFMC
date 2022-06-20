@@ -5,7 +5,12 @@
 2) in Terminal create a new environment and install the following library:
 ```
 conda env create -f path-to-ee-shared-env.yml
-
+```
+alternatively:
+```
+conda create --name lfmcmaps
+conda activate lfmcmaps
+conda install --yes --file requirements.txt
 ```
 
 3) If there are no error messages, the software libraries and dependencies are correctly configured.
