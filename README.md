@@ -4,8 +4,6 @@
 
 2) in Terminal create a new environment and install the following library:
 ```
-conda create --name gee
-conda activate gee
 conda env create -f path-to-ee-shared-env.yml
 
 ```

@@ -1,4 +1,4 @@
-name: gee
+name: lfmcmaps
 channels:
   - conda-forge
   - defaults
@@ -431,4 +431,4 @@ dependencies:
   - zlib=1.2.12=h6c3fc93_0
   - zlib-ng=2.0.6=hac89ed1_0
   - zstd=1.5.2=hcb37349_0
-prefix: /Users/gb/opt/miniconda3/envs/gee
+prefix: /Users/gb/opt/miniconda3/envs/lfmcmaps
