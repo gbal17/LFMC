@@ -2,11 +2,14 @@
 
 1) Start with a fresh install miniconda3
 
-2) in Terminal create a new environment and install the following library:
+2) To share your conda Python environment Conda provides a convenient way for others to replicate your environment.
+the recipient can replicate the environment by running the following conda command:
 ```
 conda env create -f path-to-ee-shared-env.yml
 ```
+
 alternatively:
+in Terminal create a new environment and install the library in requirements.txt:
 ```
 conda create --name lfmcmaps
 conda activate lfmcmaps
