@@ -17,7 +17,7 @@ they are automatically running according to conrab syntax in the vi editor.
 
 # Make LFMC maps
 
-1. **Export input feature maps.** This step downloads input ERA5 maps from ftpserver.meteo.pt and  MODIS Combined 16-Day NDVI maps from gee. Open export_gee_maps.py. In line 85 - 88, choose the appropriate time period for which you want to download the maps. for e.g., `year = 2021`, `day = 1`, and `month in range(1,13)` will download maps for the 1st to 14th of each month in 2021. Run export_gee_maps.py to download sar and opt maps from gee. You can run this from terminal using `python export_gee_maps.py` or from spyder. Running this file will require you to aunthenticate your gee account. Remember which account you used because it will be necessary for the next step.
+1. **Export input feature maps.** This step downloads input ERA5 maps from ftpserver.meteo.pt and  MODIS Combined 16-Day NDVI maps from gee. 
 
 Programs in this module and descriptions:
 1) `a1_e_swvl.py` - determines the day of the year and fetches the respective ERA5 Evaporation and 
