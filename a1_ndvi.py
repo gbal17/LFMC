@@ -7,7 +7,7 @@ This program does the following:
    - Region of Interest (roi): Portugal shape file in Earth Engine asset ("users/baldassarre/1_PyroPas/Portugal")
    - The last available date 
    Mosaics over roi
-4) Export the derived image in the folder '~/Documents/ISA/LFMC_maps/data'
+4) Export the derived image in "dir_data"
 '''
 
 #############

@@ -1,12 +1,12 @@
 ''' 
 This program does the following:
 1) determines the day of the year
-2) open reference MODIS file in '~/Documents/ISA/LFMC_maps/data': MCD43A4_006_NDVI_20220525.tif
+2) open the 1st available MODIS NDVI in "dir_data" to use as a reference
    and get resolution
-3) Upsample according to reference file the following files in '~/Documents/ISA/LFMC_maps/data/YYYY/mm': 
+3) Upsample according to reference file the following files in "dir_data"+'/YYYY/mm': 
    3.1) 'e'    Evaporation:    ECMWF_e_yyyymmdd_mean     to became ---> ECMWF_e_yyyymmdd_mean_wrap
    3.2) 'swvl' Soil Moisture:  ECMWF_swvl_yyyymmdd_mean  to became ---> ECMWF_swvl_yyyymmdd_mean_wrap
-and save temporarily in the directory '~/Documents/ISA/LFMC_maps/data'
+and save temporarily in the directory "dir_data"
 '''
 
 #############
@@ -15,6 +15,8 @@ and save temporarily in the directory '~/Documents/ISA/LFMC_maps/data'
 
 from osgeo import gdal
 import os
+import glob
+
 from dirs import dir_data
 
 ########
@@ -35,7 +37,9 @@ day = now.strftime("%d")
 today = year+month+day
 
 # 2) open reference file and get resolution
-referenceFile = os.path.join(dir_data, 'MCD43A4_006_NDVI_20220525.tif')
+# get the first MODIS NDVI in the data folder as reference
+fileNDVI = glob.glob(os.path.join(dir_data,'*NDVI*'))
+referenceFile = fileNDVI[0];
 reference = gdal.Open(referenceFile, 0)  # this opens the file in only reading mode
 referenceTrans = reference.GetGeoTransform()
 print(referenceTrans)

@@ -12,8 +12,8 @@ Dowloads the NetCDF files from 00:00 to 24:00 and close the ftp
    convert this to TIFF
 5) Remove the NetCDF files
 6) Move the TIFF files from 
-   '~/Documents/ISA/LFMC_maps' to 
-   '~/Documents/ISA/LFMC_maps/data' in the correct Year(e.g: 2022) and Month(e.g: 06) folder.
+   "dir_codes" to 
+   "dir_data" in the correct Year(e.g: 2022) and Month(e.g: 06) folder.
 '''
 
 #############

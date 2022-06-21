@@ -1,8 +1,8 @@
 ''' 
 This program does the following:
 1) determines the day of the year
-2) Does the Co-Registration according to reference MODIS  file in '~/Documents/ISA/LFMC_maps/data': MCD43A4_006_NDVI_20220525.tif
-   for the following files generated in the previous script in '~/Documents/ISA/LFMC_maps/data':
+2) Does the Co-Registration according to the first available MODIS NDVI in "dir_data"
+   for the following files generated in the previous script in "dir_data":
    2.1) 'e'    Evaporation:    ECMWF_e_yyyymmdd_mean_wrap       to became ---> ECMWF_e_yyyymmdd_mean_coreg
    2.2) 'swvl' Soil Moisture:  ECMWF_swvl_yyyymmdd_mean_wrap    to became ---> ECMWF_swvl_yyyymmdd_mean_coreg
    and save temporarily in the same directory.
@@ -76,8 +76,9 @@ def reproj_match(infile, match, outfile):
 
 dataset = 'ECMWF'
 # REFERENCE FILE
-referenceFile = os.path.join(dir_data,\
-                'MCD43A4_006_NDVI_20220525.tif')
+# get the first MODIS NDVI in the data folder as reference
+fileNDVI = glob.glob(os.path.join(dir_data,'*NDVI*'))
+referenceFile = fileNDVI[0];
 
 # ------------------------------------
 # 1) determines the day of the year 
