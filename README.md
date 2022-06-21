@@ -1,6 +1,6 @@
 # Set up environment
 
-1) Start with a fresh install miniconda3
+1) Start with a fresh install miniconda3. The scripts have been tested on python 3.9.
 
 2) To share your conda Python environment Conda provides a convenient way for others to replicate your environment.
 the recipient can replicate the environment by running the following conda command:
